@@ -1,0 +1,8 @@
+<ul class="breadcrumb" >
+        <li ng-repeat="part in path">
+            <div ng-hide="$last">
+                <a href="{{part.url}}">{{part.part}}</a> <span class="divider">/</span>    
+            </div>
+            <span ng-show="$last" class="active">{{part.part}}</span>                
+        </li>
+</ul>
