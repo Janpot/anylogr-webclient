@@ -1,18 +1,32 @@
+/*jslint vars: true, white: true, browser: true, devel: true, maxlen: 80*/
+/*global angular*/
 'use strict';
 
 /* Controllers */
+var controllers = angular.module('anylogr.controllers', ['anylogr.services']);
 
-function DataCtrl($scope, $routeParams) {
-    var buildUrl = '/data';
-    $scope.path = [{part: 'data', url: buildUrl}];
-    
-    for (var i = 1; i <= 4; i++) {
-        var part = $routeParams['path' + i];
-        if (part != undefined) {
-            buildUrl += '/' + part;
-            $scope.path.push({part: part, url: buildUrl});
-        } else {
-            break;
-        }
+controllers.controller('DataCtrl', 
+    function DataCtrl($scope, $location, $http, anylogr) {    
+
+        $scope.location = $location.path();
+        
+        // Build the breadcrumb from the current location.    
+        var segments = $scope.location.split('/').splice(1);
+        var partialPath = '';
+        $scope.breadcrumb = segments.map(function(segment) {
+            partialPath += '/' + segment;
+            return {
+                name: segment,
+                path: partialPath
+            };
+        });
+        
+        // Get the data
+        anylogr.get($scope.location + '.json').then(function(data) {
+            $scope.errorMsg = '';
+            $scope.tree = data;
+        },function(msg) {
+            $scope.errorMsg = msg;
+        });
     }
-}
+);

@@ -1,8 +1,19 @@
 <ul class="breadcrumb" >
-        <li ng-repeat="part in path">
+        <li ng-repeat="crumb in breadcrumb">
             <div ng-hide="$last">
-                <a href="{{part.url}}">{{part.part}}</a> <span class="divider">/</span>    
+                <a href="{{crumb.path}}">{{crumb.name}}</a> <span class="divider">/</span>    
             </div>
-            <span ng-show="$last" class="active">{{part.part}}</span>                
+            <span ng-show="$last" class="active">{{crumb.name}}</span>                
         </li>
 </ul>
+
+
+
+
+<ul class="nav nav-list">
+    <li ng-repeat="data in tree.content">
+        <a href="{{location+'/'+data.name}}">{{data.name}}</a>
+    </li>
+</ul>
+
+<div class="alert alert-error" ng-show="errorMsg!=''">{{errorMsg}}</div>

@@ -1,3 +1,7 @@
+/*jslint nomen: true, vars: true, white: true, node: true, devel: true, maxlen: 80*/
+/*global angular*/
+'use strict';  
+
 var express = require('express');
 var http = require('http');
 var app = express();
@@ -25,8 +29,9 @@ var less = require('less')
 
 var onModify = function(filename){
   fs.readFile(lessFiles + '/' + filename, function(err, lessCss){
-    if(err)
+    if(err) {
       throw new Error(err);
+    }
 
     lessCss = lessCss.toString();
 
@@ -35,11 +40,12 @@ var onModify = function(filename){
       fs.writeFile(newFilename, css);
     });
   });
-}
+};
 
 fs.readdir(lessFiles, function(err, files){
-  if(err)
+  if(err) {
     throw new Error(err);
+  }
 
   files.filter(function(path){
     return path.match(/\.less$/); // Filter not .less files
