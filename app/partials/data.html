@@ -1,3 +1,5 @@
+
+
 <ul class="breadcrumb" >
         <li ng-repeat="crumb in breadcrumb">
             <div ng-hide="$last">
@@ -7,13 +9,20 @@
         </li>
 </ul>
 
-
-
-
-<ul class="nav nav-list">
-    <li ng-repeat="data in tree.content">
-        <a href="{{location+'/'+data.name}}">{{data.name}}</a>
-    </li>
-</ul>
-
 <div class="alert alert-error" ng-show="errorMsg!=''">{{errorMsg}}</div>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span3">
+      <ul class="nav nav-tabs nav-stacked">
+            <li ng-repeat="data in tree.content">
+                <a href="{{location+'/'+data.name}}">{{data.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="span9">
+      
+    </div>
+  </div>
+</div>
+
