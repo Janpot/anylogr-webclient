@@ -21,14 +21,14 @@ var testData = {
                   {
                     "id": 3,
                     "name": "gewicht",
-                    "type": "number",
+                    "type": "metric",
                     "unit": "kg",
                     "description": "Beef it up, bitch"
                   },
                   {
                     "id": 4,
                     "name": "training-time",
-                    "type": "number",
+                    "type": "metric",
                     "unit": "minutes",
                     "description": ""
                   }
@@ -45,13 +45,13 @@ var testData = {
             {
               "id": 6,
               "name": "olijfboom",
-              "type": "image",
+              "type": "metric",
               "description": "Fuck yeah, grow that mother of an olive tree"
             },
             {
               "id": 7,
               "name": "stinkzwam",
-              "type": "image",
+              "type": "metric",
               "description": "Motherfucking champi's yoo"
             }
         ]

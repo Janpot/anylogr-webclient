@@ -21,12 +21,30 @@ controllers.controller('DataCtrl',
         };
       });
 
+      var views = {
+        'group': 'partials/groupview.html',
+        'metric': 'partials/metricview.html'
+      }
+
       // Get the data
       anylogr.get($scope.location + '.json').then(function (data) {
+
+        $scope.content = views[data.type];
+
         $scope.errorMsg = '';
         $scope.tree = data;
       }, function (msg) {
         $scope.errorMsg = msg;
       });
+
+      $scope.isGroup = function (item) {
+        return item.type === 'group';
+      };
+
+      $scope.isMetric = function (item) {
+        return item.type === 'metric';
+      };
+
+
     }
 );

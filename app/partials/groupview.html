@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <div class="row-fluid">
+
+    <div class="span3">
+
+      <h1>{{tree.name}}</h1>
+      <p>{{tree.description}}</p>
+
+    </div>
+
+    <div class="span9">
+
+      <ul class="nav nav-tabs nav-stacked">
+        <li ng-repeat="data in tree.content" class="listitem type-{{data.type}}">
+          <a href="{{location+'/'+data.name}}">
+            <i class="icon icon-chevron-right" ng-show="isGroup(data)"></i>
+            <i class="icon icon-list" ng-show="isMetric(data)"></i>
+            <span class="">{{data.name}}</span>
+            <p>{{data.description}}</p>            
+          </a>
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+</div>

@@ -5,6 +5,7 @@
   <title>Anylogr</title>
 
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/non-responsive.css">
   <link rel="stylesheet" href="lib/bootstrap/css/bootstrap-responsive.min.css">
   <link rel="stylesheet" href="css/app.css">
 
@@ -15,15 +16,25 @@
 </head>
 <body>
 
-  <div class="navbar navbar-fixed-top">
+  <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
-      <a class="brand" href="#">anylogr
-      </a>
+      <div class="container">
+        <a class="brand" href="#">anylogr</a>
+        <ul class="nav">
+          <li class="active">
+            <a href="#">Home</a>
+          </li>
+          <li class="">
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <div ng-view></div>
 
+  <div class="container" ng-view></div>
 
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
