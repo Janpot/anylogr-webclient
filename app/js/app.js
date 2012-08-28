@@ -5,26 +5,26 @@
 /* App Module */
 
 angular.module('anylogr', ['anylogr.controllers']).
-  config(['$routeProvider', function($routeProvider) {
-  $routeProvider
-      .when('/:user', {
+  config(['$routeProvider', function ($routeProvider) {
+    $routeProvider
+        .when('/:user', {
           templateUrl: 'partials/data.html',
           controller: 'DataCtrl'
-      })
-      .when('/:user/:path1', {
+        })
+        .when('/:user/:path1', {
           templateUrl: 'partials/data.html',
           controller: 'DataCtrl'
-      })
-      .when('/:user/:path1/:path2', {
+        })
+        .when('/:user/:path1/:path2', {
           templateUrl: 'partials/data.html',
           controller: 'DataCtrl'
-      })
-      .when('/:user/:path1/:path2/:path3', {
+        })
+        .when('/:user/:path1/:path2/:path3', {
           templateUrl: 'partials/data.html',
           controller: 'DataCtrl'
-      }).
-      when('/:user/:path1/:path2/:path3/:path4', {
+        }).
+        when('/:user/:path1/:path2/:path3/:path4', {
           templateUrl: 'partials/data.html',
           controller: 'DataCtrl'
-      }).otherwise({redirectTo: '/janpotoms'});
-}]);
+        }).otherwise({ redirectTo: '/janpotoms' });
+  }]);

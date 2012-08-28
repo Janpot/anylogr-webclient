@@ -1,12 +1,10 @@
-
-
-<ul class="breadcrumb" >
-        <li ng-repeat="crumb in breadcrumb">
-            <div ng-hide="$last">
-                <a href="{{crumb.path}}">{{crumb.name}}</a> <span class="divider">/</span>    
-            </div>
-            <span ng-show="$last" class="active">{{crumb.name}}</span>                
-        </li>
+<ul class="breadcrumb">
+  <li ng-repeat="crumb in breadcrumb">
+    <div ng-hide="$last">
+      <a href="{{crumb.path}}">{{crumb.name}}</a> <span class="divider">/</span>
+    </div>
+    <span ng-show="$last" class="active">{{crumb.name}}</span>
+  </li>
 </ul>
 
 <div class="alert alert-error" ng-show="errorMsg!=''">{{errorMsg}}</div>
@@ -14,14 +12,25 @@
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span3">
+
+
       <ul class="nav nav-tabs nav-stacked">
-            <li ng-repeat="data in tree.content">
-                <a href="{{location+'/'+data.name}}">{{data.name}}</a>
-            </li>
-        </ul>
+        <li ng-repeat="data in tree.content" class="listitem type-{{data.type}}">
+          <a href="{{location+'/'+data.name}}">
+            <span class="">{{data.name}}</span>
+            <p>{{data.description}}</p>
+            <i class="icon-chevron-right"></i>
+          </a>
+        </li>
+      </ul>
+
+
     </div>
     <div class="span9">
-      
+
+      <h1>{{tree.name}}</h1>
+      <p>{{tree.description}}</p>
+
     </div>
   </div>
 </div>
