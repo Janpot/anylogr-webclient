@@ -97,3 +97,8 @@ services.factory('anylogr', function ($http, $q) {
     }
   };
 });
+
+services.value('itemTypes', {
+  group: 'group',
+  metric: 'metric'
+});
