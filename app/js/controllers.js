@@ -69,6 +69,8 @@ controllers.controller('MetricCtrl',
 
       $scope.metric = $scope.data;
 
+      $scope.charttype = 'bar';
+
 
     }
 );

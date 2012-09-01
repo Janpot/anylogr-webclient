@@ -2,6 +2,8 @@
 /*global angular*/
 'use strict';
 
+
+
 var testData = {
   "id": 0,
   "name": "janpotoms",
@@ -61,6 +63,7 @@ var testData = {
 
 var services = angular.module('anylogr.services', []);
 
+
 services.factory('anylogr', function ($http, $q) {
 
   var userid = 'janpotoms';
@@ -102,3 +105,58 @@ services.value('itemTypes', {
   group: 'group',
   metric: 'metric'
 });
+
+
+
+/*
+services.directive('highChart', function () {
+
+  return {
+    restrict: 'A',
+    link: function (scope, elm, attrs) {
+      var chart = new Highcharts.Chart({
+        chart: {
+          renderTo: elm[0],
+          type: 'line',
+        },
+        title: {
+          text: null
+        },
+        subtitle: {
+          text: null
+        },
+        xAxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        },
+        yAxis: {
+          title: {
+            text: 'Temperature (°C)'
+          },
+          plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+        },
+        tooltip: {
+          formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+            this.x + ': ' + this.y + '°C';
+          }
+        },
+        legend: {
+          enabled: false
+        },
+        credits: {
+          enabled: false
+        },
+        series: [{
+          name: 'Tokyo',
+          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+        }]
+      });
+    }
+  };
+});
+*/
