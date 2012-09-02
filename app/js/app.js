@@ -1,5 +1,5 @@
-/*jslint vars: true, white: true, browser: true, devel: true, maxlen: 80*/
-/*global angular, DataCtrl*/
+/// <reference path="~/app/lib/angular/angular.js" />
+
 'use strict';
 
 /* App Module */

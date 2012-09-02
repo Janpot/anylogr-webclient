@@ -1,5 +1,4 @@
-/*jslint nomen: true, vars: true, white: true, node: true, devel: true, maxlen: 80*/
-/*global angular*/
+
 'use strict';
 
 var express = require('express');
