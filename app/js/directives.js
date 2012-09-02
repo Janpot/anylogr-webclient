@@ -1,5 +1,6 @@
-﻿var directives = angular.module('anylogr.directives', []);
+﻿/// <reference path="~/app/lib/angular/angular.js" />
 
+var directives = angular.module('anylogr.directives', []);
 
 directives.directive('highchart', function () {
 
@@ -10,52 +11,45 @@ directives.directive('highchart', function () {
       var options = {
         chart: {
           renderTo: elm[0],
-          type: 'line',
+          type: 'line'
         },
         title: {
-          text: attrs.hcTitle || "Chart Title"
+          text: null
         },
         xAxis: {
-          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-              'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+          type: 'datetime',
+          title: {
+            text: null
+          }
         },
         yAxis: {
           title: {
-            text: 'Temperature (°C)'
-          },
-          plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-          }]
+            text: null
+          }
         },
         legend: {
           enabled: false
         },
         credits: {
           enabled: false
-        },
-        series: [{
-          name: 'Tokyo',
-          data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-        }]
+        }
       };      
 
       var chart = new Highcharts.Chart(options);
-      
-      attrs.$observe('hcTitle', function (value) {
-        var title = chart.options.title;
-        title.text = value || null;
-        chart.setTitle(title, undefined);
+
+      scope.$watch(attrs.hcSeries, function (newSeries) {
+        // remove old series
+        while (chart.series.length > 0) {
+          chart.series[0].remove(false);
+        }
+
+        // add new series
+        newSeries.forEach(function (serie) {
+          chart.addSeries(serie, false);
+        });
+        
         chart.redraw();
-      });
-      attrs.$observe('hcSubtitle', function (value) {
-        var subtitle = chart.options.subtitle;
-        console.log(subtitle);
-        subtitle.text = value || null;
-        chart.setTitle(undefined, subtitle);
-        chart.redraw();
-      });
+      }, true);
       
     }
   };

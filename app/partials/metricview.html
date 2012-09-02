@@ -7,8 +7,10 @@
 
     </div>
 
-    <highchart class="span9 graph" hc-title="{{metric.name}}" hc-subtitle="{{metric.description}}">
+    <highchart class="span9 graph" hc-series="series">
     </highchart>
+
+    <div ng-repeat="serie in series"></div>
 
 
   </div>

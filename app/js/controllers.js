@@ -28,7 +28,7 @@ controllers.controller('DataCtrl',
         };
       });
 
-      
+
 
       // Get the data
       anylogr.get($scope.location + '.json').then(function (data) {
@@ -65,12 +65,27 @@ controllers.controller('GroupCtrl',
 );
 
 controllers.controller('MetricCtrl',
-    function GroupCtrl($scope) {
+    function GroupCtrl($scope, $timeout) {
 
       $scope.metric = $scope.data;
 
-      $scope.charttype = 'bar';
+      $scope.series = [
+        {
+          data: [
+              [Date.UTC(2012, 0, 1), 30],
+              [Date.UTC(2012, 2, 1), 70],
+              [Date.UTC(2012, 3, 1), 100]
+          ]
+        }
+      ];
 
+      $scope.series.push({
+        data: [
+            [Date.UTC(2012, 0, 1), 20],
+            [Date.UTC(2012, 2, 1), 50],
+            [Date.UTC(2012, 3, 1), 70]
+        ]
+      });
 
     }
 );
