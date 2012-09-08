@@ -4,8 +4,10 @@ var directives = angular.module('anylogr.directives', []);
 
 directives.directive('highchart', function () {
 
+  var currId = 0;
+
   return {
-    restrict: 'E',
+    restrict: 'C',
     link: function (scope, elm, attrs) {
 
       var options = {
@@ -36,7 +38,7 @@ directives.directive('highchart', function () {
       };
 
       var chart = new Highcharts.Chart(options);
-      var currId = 0;
+      
 
       scope.$watch(attrs.hcSeries, function (newSeriesList) {
         // copy the chart series for removal later on
@@ -57,8 +59,8 @@ directives.directive('highchart', function () {
             }
 
             if (i >= toRemoveChartSeries.length) {
-              // something is messed up, do nothing
-              console.error('the new series already has an $id but does not exist yet');
+              // The series is already displayed on another chart
+              chart.addSeries(newSeries, false);
             } else {
               // update series
               var chartSeries = toRemoveChartSeries[i];
