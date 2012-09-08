@@ -1,7 +1,9 @@
 # User-specific files
+*.v11.suo
 *.suo
 *.user
 *.sln.docstates
+*.sln
 
 # Windows image file caches
 Thumbs.db
