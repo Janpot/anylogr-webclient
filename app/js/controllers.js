@@ -86,6 +86,15 @@ controllers.controller('MetricCtrl',
             [Date.UTC(2012, 3, 1), 70]
         ]
       });
+      
+      $timeout(function () {
+        $scope.series[0].name = 'joehoe';
+        $scope.series[0].data = [
+              [Date.UTC(2012, 0, 1), 70],
+              [Date.UTC(2012, 2, 1), 20],
+              [Date.UTC(2012, 3, 1), 60]
+          ]
+      }, 3000);
 
     }
 );
