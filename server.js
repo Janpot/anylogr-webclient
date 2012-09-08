@@ -4,7 +4,7 @@
 var express = require('express');
 var http = require('http');
 var app = express();
-var PORT = 8080;
+var port = process.env.PORT || 8080;
 
 var pub_dir = __dirname + '/app';
 
@@ -12,8 +12,8 @@ app.configure(function () {
   app.use(express.static(pub_dir));
 });
 
-http.createServer(app).listen(PORT, function () {
-  console.log("Express server listening on port " + PORT);
+http.createServer(app).listen(port, function () {
+  console.log("Express server listening on port " + port);
 });
 
 var lessFiles = __dirname + '/app/less'
