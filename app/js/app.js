@@ -13,6 +13,7 @@ angular.module('anylogr', ['anylogr.controllers', 'anylogr.services', 'anylogr.d
           return anylogrData.getTree();
         },
         delay: function ($timeout) {
+          return;
           return $timeout(function() {console.log('simulate network')}, 300);
         }
       }

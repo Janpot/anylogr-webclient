@@ -6,7 +6,7 @@
 var controllers = angular.module('anylogr.controllers', ['anylogr.services']);
 
 controllers.controller('DataCtrl',
-    function DataCtrl($scope, $location, itemTypes, anylogrTree) {
+    function DataCtrl($scope, $location, itemTypes, anylogrTree, $rootScope) {
       
       // define views for every anylogr type
       var views = {};

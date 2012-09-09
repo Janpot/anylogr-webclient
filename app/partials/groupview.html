@@ -4,7 +4,6 @@
     <div class="span3">
 
       <h1>{{group.name}}</h1>
-      <p>{{group.description}}</p>
 
     </div>
 
@@ -15,8 +14,7 @@
           <a href="{{getItemUrl(item)}}">
             <i class="icon icon-chevron-right" ng-show="isGroup(item)"></i>
             <i class="icon icon-list" ng-show="isMetric(item)"></i>
-            <span class="">{{item.name}}</span>
-            <p>{{item.description}}</p>            
+            <span class="">{{item.name}}</span>       
           </a>
         </li>
       </ul>
