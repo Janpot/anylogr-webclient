@@ -2,106 +2,63 @@
 
 'use strict';
 
-
-
-var testData = {
-  "id": 0,
-  "name": "janpotoms",
+var testTree = {
+  "user": "testuser",
+  "groups": [{
+    "type": "group",
+    "name": "group1",
+    "id": 1,
+    "members": [{
+      "type": "metric",
+      "name": "group1-metric1",
+      "id": 3
+    }, {
+      "type": "metric",
+      "name": "group1-metric2",
+      "id": 4
+    }, {
+      "type": "group",
+      "name": "subgroup1",
+      "id": 5,
+      "members": [{
+        "type": "metric",
+        "name": "subgroup1-metric1",
+        "id": 6
+      }, {
+        "type": "metric",
+        "name": "subgroup1-metric2",
+        "id": 7
+      }],
+      "expanded": true
+    }],
+    "expanded": true
+  },
+{
   "type": "group",
-  "content": [
-      {
-        "id": 1,
-        "name": "fitness",
-        "type": "group",
-        "content": [
-            {
-              "id": 2,
-              "name": "bench",
-              "type": "group",
-              "description": "My bench program y'all",
-              "content": [
-                  {
-                    "id": 3,
-                    "name": "gewicht",
-                    "type": "metric",
-                    "unit": "kg",
-                    "description": "Beef it up, bitch"
-                  },
-                  {
-                    "id": 4,
-                    "name": "training-time",
-                    "type": "metric",
-                    "unit": "minutes",
-                    "description": ""
-                  }
-              ]
-            }
-        ]
-      },
-      {
-        "id": 5,
-        "name": "tuin",
-        "type": "group",
-        "description": "Yo bitch, grow that shit",
-        "content": [
-            {
-              "id": 6,
-              "name": "olijfboom",
-              "type": "metric",
-              "description": "Fuck yeah, grow that mother of an olive tree"
-            },
-            {
-              "id": 7,
-              "name": "stinkzwam",
-              "type": "metric",
-              "description": "Motherfucking champi's yoo"
-            }
-        ]
-      }
-  ]
+  "name": "group2",
+  "id": 2,
+  "members": [],
+  "expanded": true
+}],
+  "idCounter": 7
 };
 
-var services = angular.module('anylogr.services', []);
+angular.module('anylogr.services', [])
 
+  .factory('anylogrData', function ($q, $http) {
+    return {
+      getTree: function () {
+        var deferred = $q.defer();
 
-services.factory('anylogr', function ($http, $q) {
+        // todo: get tree with ajax
+        deferred.resolve(testTree);
 
-  var userid = 'janpotoms';
-
-  return {
-    get: function (url) {
-      var deferred = $q.defer();
-
-      var segments = url.split('.')[0].split('/').splice(1);
-
-      if (segments[0] !== userid) {
-        deferred.reject('not authorized (test service: .../janpotoms)');
-      } else {
-        var result = testData;
-
-        for (var i = 1; i < segments.length; i++) {
-          if (result.content == undefined) {
-            deferred.reject('is not a group');
-            break;
-          }
-          result = result.content.filter(function (item) {
-            return item.name === segments[i];
-          })[0];
-          if (result === undefined) {
-            deferred.reject('does not exist');
-            break;
-          }
-        }
-
-        deferred.resolve(result);
+        return deferred.promise;
       }
+    };
+  })
 
-      return deferred.promise;
-    }
-  };
-});
-
-services.value('itemTypes', {
-  group: 'group',
-  metric: 'metric'
-});
+  .value('itemTypes', {
+    group: 'group',
+    metric: 'metric'
+  });

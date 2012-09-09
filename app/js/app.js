@@ -2,29 +2,29 @@
 
 'use strict';
 
-/* App Module */
+angular.module('anylogr', ['anylogr.controllers', 'anylogr.services', 'anylogr.directives'])
 
-angular.module('anylogr', ['anylogr.controllers', 'anylogr.services', 'anylogr.directives']).
-  config(['$routeProvider', function ($routeProvider) {
+  .config(function ($routeProvider) {
+    var dataRoute = {
+      templateUrl: 'partials/data.html',
+      controller: 'DataCtrl',
+      resolve: {
+        anylogrTree: function (anylogrData) {
+          return anylogrData.getTree();
+        },
+        delay: function ($timeout) {
+          return $timeout(function() {console.log('simulate network')}, 300);
+        }
+      }
+    };
+
+    // todo: change to a single route when this angular functionality becomes available
     $routeProvider
-        .when('/:user', {
-          templateUrl: 'partials/data.html',
-          controller: 'DataCtrl'
-        })
-        .when('/:user/:path1', {
-          templateUrl: 'partials/data.html',
-          controller: 'DataCtrl'
-        })
-        .when('/:user/:path1/:path2', {
-          templateUrl: 'partials/data.html',
-          controller: 'DataCtrl'
-        })
-        .when('/:user/:path1/:path2/:path3', {
-          templateUrl: 'partials/data.html',
-          controller: 'DataCtrl'
-        }).
-        when('/:user/:path1/:path2/:path3/:path4', {
-          templateUrl: 'partials/data.html',
-          controller: 'DataCtrl'
-        }).otherwise({ redirectTo: '/janpotoms' });
-  }]);
+        .when('/data', dataRoute)
+        .when('/data/:path1', dataRoute)
+        .when('/data/:path1/:path2', dataRoute)
+        .when('/data/:path1/:path2/:path3', dataRoute)
+        .when('/data/:path1/:path2/:path3/:path4', dataRoute)
+        .when('/data/:path1/:path2/:path3/:path4/:path5', dataRoute)
+        .otherwise({ redirectTo: '/data' });
+  });
